@@ -1,8 +1,10 @@
 # ToDo-MongoDB-CRUD-App
 
-This project is based off of a freeCodeCamp.org project tutorial presented by Pedro Mercado in : https://youtu.be/CyTWPr_WwdI
+This is based off of a freeCodeCamp.org tutorial presented by Pedro Mercado in :
 
-Current : 6 min
+https://youtu.be/CyTWPr_WwdI
+
+Current : 10 min
 
  npm init -y
  npm install body-parser

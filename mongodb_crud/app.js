@@ -6,3 +6,8 @@ const path = require('path');
 
 const db = require("./db");
 const collection = "todo" ;
+
+db.connect((err)=> {
+
+
+});
