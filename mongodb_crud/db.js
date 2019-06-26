@@ -1,6 +1,7 @@
 const MongoClient = require('mongodb').MongoClient;
 const ObjectID = require('mongodb').ObjectID;
 const dbname = 'crud_mongodb';
+
 //default location
 const url = 'mongodb://localhost:27017'
 const mongoOptions = {useNewUrlParser : true}
