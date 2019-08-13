@@ -52,6 +52,17 @@
         const form = $("#form");
         const todoUserInput = $("#todoUserInput");
 
+        const getTodos = () =>{
+          fetch('/getTodos',{method : "get"}).then((response) => {
+            return response.json();
+          }).then((data) => {
+              console.log(data);
+              displayTodos(data);
+          });
+        }
+
+        getTodos();
+
         //**resetTodosInput
         const resetTodosInput = ()=>{
           todoUserInput.val("");
@@ -73,10 +84,39 @@
               <div class="col-md-4"></div>
               <div class="col-md-4 text-right">
                 <button type="button" class="btn btn-secondary" id="${ids.editID}">Edit</button>
+                <button type="button" class="btn btn-danger" id="${ids.deleteID}">Delete</button>
               </div>
             </div>
           </li>` ;
         }
+
+        const displayTodos = (data)=>{
+            data.forEach((todo) => {
+              let ids = buildIDS(todo);
+              display.append(buildTemplate(todo,ids));
+              editTodo(todo,ids.todoID,ids.editID);
+              deleteTodo(todo,ids.listItemID,ids.deleteID);
+            });
+        }
+
+        form.submit((e) => {
+          e.preventDefault();
+          fetch('/',{
+            method : 'post',
+            body : JSON.stringify({todo : todoUserInput.val()}),
+            headers : {
+              "Content-Type" : "application/json; charset=utf-8"
+            }
+          }).then((response) => {
+                return response.json();
+          }).then((data) => {
+                if(data.result.ok == 1 && data.result.n ==1){
+                  let ids =buildIDS(buildTemplate(data.document,ids));
+
+                }
+
+          })
+        });
 
       });
     </script>
