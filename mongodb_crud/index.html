@@ -65,7 +65,27 @@
 
         //**resetTodosInput
         const resetTodosInput = ()=>{
-          todoUserInput.val("");
+          todoUserInput.val('');
+        }
+
+        const editTodo = (todo,todoID,editID)=>{
+          let editBtn = $(`${editID}`);
+          editBtn.click(()=>{
+            fetch(`/${todo._id}`,{
+              method : "put",
+              headers : {
+                "Content-Type" : "application/json; charset=utf-8"
+              },
+              body : JSON.stringify({todo : todoUserInput.val()})
+            }).then((response)=>{
+              return response.json();
+            }).then((data)=>{
+                if(data.ok == 1){
+                  let todoIndex = $(`#${todoID}`);
+
+                }
+            })
+          })
         }
 
         const deleteTodo = (todo,listItemID,deleteID)=>{
