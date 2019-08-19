@@ -82,7 +82,8 @@
             }).then((data)=>{
                 if(data.ok == 1){
                   let todoIndex = $(`#${todoID}`);
-
+                  todoIndex.html(data.value.todo);
+                  resetTodosInput();
                 }
             })
           })
