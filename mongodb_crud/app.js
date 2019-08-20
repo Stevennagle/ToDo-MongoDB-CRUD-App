@@ -2,9 +2,9 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
 app.use(bodyParser.json());
+
 const path = require('path');
 const Joi = require('joi');
-
 const db = require("./db");
 const collection = "todo" ;
 
@@ -49,13 +49,19 @@ app.post('/',(req,res,next)=>{
             error.status = 400;
             next(error);
         }
-    });
+        else{
+            db.getDB().collection(collection).insertOne(userInput,(err,result)=>{
+                if(err){
+                    const error = new Error("Failed to insert todo");
+                    error.status = 400;
+                    next(error);
 
-    db.getDB().collection(collection).insertOne(userInput,(err,result)=>{
-        if(err)
-            console.log(err);
-        else
-            res.json({result : result, document : result.ops[0]});
+                }
+                else{
+                    res.json({result : result, document : result.ops[0],msg : "Successfully added todo",error : null});
+                }
+            });
+        }
     });
 });
 
@@ -70,7 +76,14 @@ app.delete('/:id',(req,res)=>{
     });
 });
 
-
+app.use((err,req,res,next)=>{
+    res.status(err.status).json({
+        error : {
+            //no terminating token ? err.message
+            message : err.message
+        }
+    });
+});
 
 db.connect((err)=> {
     if(err){
