@@ -4,7 +4,7 @@ This is based off of a freeCodeCamp.org tutorial presented by Pedro Mercado in :
 
 https://youtu.be/CyTWPr_WwdI
 
-Current : 1hr 6min
+Completed tutorial as presented.
 
  npm init -y
  npm install body-parser
@@ -13,7 +13,7 @@ Current : 1hr 6min
  npm install path
  npm install joi
 
- Added Bootstrap : 29min
+ With Bootstrap
 
 
 https://github.com/noobcoder1137/Todo_Rest_CRUD_Application_JQuery_FetchAPI

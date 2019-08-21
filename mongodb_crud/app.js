@@ -10,7 +10,7 @@ const collection = "todo" ;
 
 const schema =Joi.object().keys({
     //Semi colon after require()?
-    todo : Joi.string().require();
+    todo : Joi.string().required();
 });
 
 app.get('/',(req, res)=>{
